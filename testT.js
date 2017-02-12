@@ -97,7 +97,7 @@ function create() {
     game.camera.follow(player);
     
     //getWord();
-    theWord = "nice black dicks on nick the noodle ";
+    theWord = "nice black flower boom hola freedom ";
     
     //  The score
     scoreText = game.add.text(350, 16, theWord, { font: "32px Verdana", fill: '#000' });
@@ -213,10 +213,20 @@ function checkWord(userWord){
         end++;
     }  
 
+     if (theWord.length != begin + 1){
+        begin2 = begin + 1;
+        end2=end + 1;
+        while (!(theWord.substring(begin2, end2) == space)){
+
+            begin2++;
+            end2++;
+        }  
+    }
+
     if(theWord.substring(index, begin) == userWord){
         scoreText.addColor('green', index);
-        scoreText.addColor('black', end);
-        console.log(end);
+        scoreText.addColor('yellow', end);
+        scoreText.addColor('black', end2);
 
         console.log("words equal");
         index = end;
