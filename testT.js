@@ -91,8 +91,7 @@ function create() {
     player.body.gravity.y = 300;
     player.body.collideWorldBounds = true;
 
-    //  Our two animations, walking l eft and right.
-    player.animations.add('left', [0, 1, 2, 3], 10, true);
+    //  Our one animation, walking right.
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     game.camera.follow(player);
@@ -140,11 +139,7 @@ function update() {
     // Controls input from arrow buttons
     if (cursors.left.isDown && canMove)
     {
-        //niceText.text = "";
-        //  Move to the left
-        player.body.velocity.x = -150;
-
-        player.animations.play('left');
+        //nothing happens
     }
     else if (canMoveRight)
     {
@@ -283,8 +278,6 @@ function moveRight() {
     //add sky
     sky = game.add.sprite(counter*2, 0, 'sky');
     game.world.sendToBack(sky);
-
-    console.log("player pos: " + player.x);
     
     canMoveRight = true;
 }
