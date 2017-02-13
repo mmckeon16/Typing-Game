@@ -97,10 +97,10 @@ function create() {
     game.camera.follow(player);
     
     //getWord();
-    theWord = "nice black flower boom hola freedom ";
+    theWord = "nice black flower boom hola freedom chocolate milk is the best ";
     
     //  The score
-    scoreText = game.add.text(350, 16, theWord, { font: "32px Verdana", fill: '#000' });
+    scoreText = game.add.text(32, 16, theWord, { font: "32px Verdana", fill: '#000' });
     inputText = game.add.text(380, 200, '', { font: "38px Verdana", fontWeight: 'bold', fill: '#000' });
 
     //makes initial word yellow
@@ -126,7 +126,6 @@ function update() {
 
     inputText.x = player.x;
     game.camera.follow(player);
-    console.log(player.x);
 
     //  Collide the player with the platforms
     game.physics.arcade.collide(player, platforms);
@@ -143,10 +142,9 @@ function update() {
     }
     else if (canMoveRight)
     {
-       // niceText.text = "";
         
         if((player.x - counter) >= 200){
-            
+           
             counter+=200;
             
             var ground2 = platforms.create(counter*2, game.world.height - 64, 'ground');
@@ -160,10 +158,11 @@ function update() {
             //add sky
             sky = game.add.sprite(counter*2, 0, 'sky');
             game.world.sendToBack(sky);
+
         }
         
         //  Move to the right
-        player.body.velocity.x = 150;
+        player.body.velocity.x = 90;
 
         player.animations.play('right');
     }
@@ -231,21 +230,17 @@ function checkWord(userWord){
         scoreText.addColor('yellow', end);
         scoreText.addColor('black', end2);
 
+        moveRight();
         console.log("words equal");
         index = end;
         console.log("index: " + index)
         begin = index;
         end = index + 1;
-       // niceText.text = "Nice!";
         emptyText();
-        //canMove = true;
-        //move();
-        moveRight();
     }
     else{
         console.log("words not equal");
         emptyText();
-        //canMove = false;
     }
 
     if (theWord.length == begin){
@@ -265,19 +260,7 @@ function getRand(min, max) {
 
 function moveRight() {
 
-    finalPos = player.x + 200;
-
-    var ground2 = platforms.create(counter*2, game.world.height - 64, 'ground');
-
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    ground2.scale.setTo(2, 2);
-
-    //  This stops it from falling away when you jump on it
-    ground2.body.immovable = true;
-
-    //add sky
-    sky = game.add.sprite(counter*2, 0, 'sky');
-    game.world.sendToBack(sky);
+    finalPos = player.x + ((begin-index)*20);
     
     canMoveRight = true;
 }
