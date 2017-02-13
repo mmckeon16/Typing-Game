@@ -10,7 +10,8 @@ function preload() {
     game.load.spritesheet('button', 'assets/sky.png', 193, 71);
 }
 
-var temp = "";
+var color1 = 0;
+var color2 = 1;
 
 var player;
 var platforms;
@@ -102,9 +103,16 @@ function create() {
     //  The score
     scoreText = game.add.text(350, 16, theWord, { font: "32px Verdana", fill: '#000' });
     inputText = game.add.text(380, 200, '', { font: "38px Verdana", fontWeight: 'bold', fill: '#000' });
-    //niceText = game.add.text(380, 200, '', { font: "38px Verdana", fontWeight: 'bold', fill: '#000' });
 
+    //makes initial word yellow
+    while (!(theWord.substring(color1, color2) == space)){
 
+        color1++;
+        color2++;
+    }  
+
+    scoreText.addColor('yellow', 0);
+    scoreText.addColor('black', color1);
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
